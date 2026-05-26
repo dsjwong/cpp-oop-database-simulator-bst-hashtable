@@ -52,3 +52,17 @@ echo "18" | ./main    # Test Table::Filter with operator==
 | 5–9   | HashTable — insert, exists, remove, to_vector |
 | 10–11 | BaseField — index tree population for PrimitiveField & ListField |
 | 12–18 | Table — constructor, addColumn, addEntry, copy, assignment, filter |
+
+## Building
+
+Requires a C++17-compatible compiler (GCC 9+ or Clang 10+).
+
+```bash
+# Compile
+g++ -std=c++17 -O2 -Wall -o main main.cpp
+
+# Or with CMake (if CMakeLists.txt is present)
+cmake -B build && cmake --build build
+```
+
+No external libraries required — standard library only.
