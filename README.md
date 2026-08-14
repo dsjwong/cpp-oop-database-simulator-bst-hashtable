@@ -10,7 +10,7 @@ This project simulates how a real database manages data internally — using ind
 
 - **Language:** C++17
 - **Concepts:** OOP, templates, smart pointers, operator overloading, copy semantics
-- **Build:** Makefile
+- **Build:** g++ (see note below — the checked-in Makefile currently has no rules)
 - **Input:** stdin (test case ID)
 
 ## Key Concepts
@@ -37,12 +37,16 @@ cpp-oop-database-simulator-bst-hashtable/
 
 ## How to Build & Run
 
+Requires a C++17-compatible compiler (GCC 9+ or Clang 10+). No external libraries required — standard library only. All the BST/HashTable/Table logic is template code included via the `.tpp` files, so `main.cpp` is the only translation unit that needs compiling.
+
 ```bash
-make
+g++ -std=c++17 -O2 -Wall -o main main.cpp
 echo "1" | ./main     # Test BST inorder traversal
 echo "5" | ./main     # Test HashTable constructor
 echo "18" | ./main    # Test Table::Filter with operator==
 ```
+
+> **Note:** the `Makefile` in this repository currently has no build rules (0 bytes), so `make` fails with `No targets. Stop.` Use the g++ command above until the Makefile is filled in.
 
 ## Test Cases
 
@@ -52,17 +56,3 @@ echo "18" | ./main    # Test Table::Filter with operator==
 | 5–9   | HashTable — insert, exists, remove, to_vector |
 | 10–11 | BaseField — index tree population for PrimitiveField & ListField |
 | 12–18 | Table — constructor, addColumn, addEntry, copy, assignment, filter |
-
-## Building
-
-Requires a C++17-compatible compiler (GCC 9+ or Clang 10+).
-
-```bash
-# Compile
-g++ -std=c++17 -O2 -Wall -o main main.cpp
-
-# Or with CMake (if CMakeLists.txt is present)
-cmake -B build && cmake --build build
-```
-
-No external libraries required — standard library only.
